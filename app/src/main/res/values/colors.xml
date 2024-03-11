@@ -6,4 +6,6 @@
     <color name="background_color">#FAFAFA</color>
     <color name="input_text_color">#DE121212</color>
     <color name="hint_color">#99121212</color>
+    <color name="primary">#122D42</color>
+    <color name="secondary">#2A6695</color>
 </resources>

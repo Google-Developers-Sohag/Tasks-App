@@ -1,9 +1,10 @@
 package com.example.gdscsohag
 
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
@@ -24,11 +25,16 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        window.navigationBarColor = getColor(R.color.primary)
-        setTheme(R.style.Base_Theme_GDSCSohag)
+        setupSplashScreen()
         setupBottomNav()
     }
 
+    private fun setupSplashScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            installSplashScreen()
+        } else setTheme(R.style.Base_Theme_GDSCSohag)
+        window.navigationBarColor = getColor(R.color.primary)
+    }
 
     private fun setupBottomNav() {
         val navHost =

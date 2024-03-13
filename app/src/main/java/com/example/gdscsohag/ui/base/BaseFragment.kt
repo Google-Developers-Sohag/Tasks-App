@@ -12,7 +12,8 @@ import com.example.gdscsohag.BR
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
     private var _binding: DB? = null
-    protected val binding: DB = _binding!!
+    protected val binding: DB
+    get() = _binding!!
 
     abstract val layoutId: Int
     abstract val viewModel: VM
@@ -25,7 +26,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
                 setVariable(BR.viewModel, viewModel)
             }
-        return _binding!!.root
+        return _binding?.root
     }
 
     override fun onDestroy() {

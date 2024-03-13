@@ -1,17 +1,10 @@
 package com.example.gdscsohag.ui.profile
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.gdscsohag.R
+import com.example.gdscsohag.databinding.FragmentProfileBinding
+import com.example.gdscsohag.ui.base.BaseFragment
 
-class ProfileFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
+class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
+    override val layoutId = R.layout.fragment_profile
+    override val viewModel by lazy { ProfileViewModel() }
 }

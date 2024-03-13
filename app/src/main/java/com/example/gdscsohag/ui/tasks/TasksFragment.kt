@@ -1,17 +1,10 @@
 package com.example.gdscsohag.ui.tasks
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.gdscsohag.R
+import com.example.gdscsohag.databinding.FragmentTasksBinding
+import com.example.gdscsohag.ui.base.BaseFragment
 
-class TasksFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tasks, container, false)
-    }
+class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
+    override val layoutId = R.layout.fragment_tasks
+    override val viewModel by lazy { TasksViewModel() }
 }

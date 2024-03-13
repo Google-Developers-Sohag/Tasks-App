@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.gdscsohag.R
+import com.example.gdscsohag.databinding.FragmentLoginBinding
+import com.example.gdscsohag.ui.base.BaseFragment
 
-class LoginFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
+    override val layoutId = R.layout.fragment_login
+    override val viewModel by lazy { LoginViewModel() }
 
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
 }

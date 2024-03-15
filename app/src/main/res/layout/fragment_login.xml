@@ -85,6 +85,7 @@
                     android:text="@string/login"
                     android:background="@drawable/primary_button_shape"
                     style="@style/primary_button"
+                    android:onClick="@{()->viewModel.onClickLogin()}"
                     />
 
                 <View

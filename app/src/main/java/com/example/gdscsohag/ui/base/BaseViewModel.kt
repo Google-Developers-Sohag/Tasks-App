@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.asStateFlow
 
 abstract class BaseViewModel(uiState: BaseUiState) : ViewModel() {
     private val _state = MutableStateFlow(uiState)
-    protected val state = _state.asStateFlow()
+    open val state = _state.asStateFlow()
 }

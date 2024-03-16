@@ -1,9 +1,54 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
+
     <style name="Base.Theme.GDSCSohag" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">@color/background_color</item>
     </style>
 
-    <style name="Theme.GDSCSohag" parent="Base.Theme.GDSCSohag" />
+    <style name="bottomNavIndication" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/secondary</item>
+    </style>
+
+    <style name="splashTheme" parent="Base.Theme.GDSCSohag">
+        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/background_color</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">@drawable/splash_launcher</item>
+    </style>
+
+    <style name="text_title" parent="">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/input_text_color</item>
+    </style>
+
+    <style name="primary_button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingVertical">8dp</item>
+    </style>
+
+
+    <style name="text_title_body_bold">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/input_text_color</item>
+    </style>
+
+
+    <style name="text_title_body_medium">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/input_text_color</item>
+    </style>
+
+    <style name="progress_bar_horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:supportsRtl">true</item>
+        <item name="android:progressDrawable">@drawable/progress_bar_shape</item>
+    </style>
 </resources>

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel : BaseViewModel(LoginUiState()) {
+class LoginViewModel : BaseViewModel<LoginUiState>(LoginUiState()) {
 
     private val _events = MutableSharedFlow<Boolean>()
     val events = _events.asSharedFlow()

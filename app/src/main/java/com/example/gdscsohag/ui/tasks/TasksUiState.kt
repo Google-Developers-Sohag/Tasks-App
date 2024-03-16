@@ -1,8 +1,7 @@
 package com.example.gdscsohag.ui.tasks
 
-import com.example.gdscsohag.ui.base.BaseUiState
+import com.example.gdscsohag.domain.Task
 
 data class TasksUiState(
-    val email: String = "",
-    val password: String = ""
-) : BaseUiState()
+    val tasks: List<Task> = listOf()
+)

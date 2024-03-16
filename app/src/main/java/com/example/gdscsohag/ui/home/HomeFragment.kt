@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setupHomeRecycler() {
-        binding.mainRecycler.adapter = HomeAdapter((viewModel.state.value as HomeUiState))
+        binding.mainRecycler.adapter = HomeAdapter(viewModel.state.value)
     }
 
 }

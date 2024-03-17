@@ -1,6 +1,5 @@
 package com.example.gdscsohag.ui.tasks.adapter
 
-import android.view.ViewGroup
 import com.example.gdscsohag.R
 import com.example.gdscsohag.databinding.ItemTaskBinding
 import com.example.gdscsohag.domain.Task
@@ -13,11 +12,6 @@ class TasksAdapter : BaseAdapter<Task>() {
         (holder.binding as ItemTaskBinding).apply {
             item = getItem(position)
             taskNumber.text = "Task ${position + 1}"
-            if (position != 0) {
-                val param = mainCard.layoutParams as ViewGroup.MarginLayoutParams
-                param.topMargin = 32
-                mainCard.layoutParams = param
-            }
         }
     }
 }

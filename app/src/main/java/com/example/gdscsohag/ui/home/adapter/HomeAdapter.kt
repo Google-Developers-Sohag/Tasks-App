@@ -3,17 +3,16 @@ package com.example.gdscsohag.ui.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.gdscsohag.R
 import com.example.gdscsohag.databinding.ChildHomeLogoCardBinding
 import com.example.gdscsohag.databinding.ChildHomeProgressBinding
+import com.example.gdscsohag.ui.base.BaseAdapter
 import com.example.gdscsohag.ui.home.HomeUiState
 
-class HomeAdapter(private val homeState: HomeUiState) :
-    RecyclerView.Adapter<HomeAdapter.BaseHomeViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHomeViewHolder {
+class HomeAdapter(private val homeState: HomeUiState) : BaseAdapter<HomeUiState>() {
+    override val layoutId = R.layout.fragment_home
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             FIRST_ITEM -> GDSCLogoViewHolder(
                 DataBindingUtil.inflate(
@@ -35,30 +34,24 @@ class HomeAdapter(private val homeState: HomeUiState) :
         }
     }
 
-    override fun getItemCount() = ITEMS_COUNT
-    override fun getItemViewType(position: Int) = position
-
-    override fun onBindViewHolder(holder: BaseHomeViewHolder, position: Int) {
+    override fun bindData(holder: BaseViewHolder, position: Int) {
         when (holder) {
             is ProgressViewHolder -> onBindProgress(holder)
         }
     }
 
+    override fun getItemCount() = ITEMS_COUNT
+    override fun getItemViewType(position: Int) = position
+
     private fun onBindProgress(holder: ProgressViewHolder) {
-        holder.binding.apply {
-            state = homeState
+        (holder.binding as ChildHomeProgressBinding).apply {
+            progressList = homeState.progressList
             progressRecycler.adapter = ProgressAdapter()
         }
     }
 
-
-    abstract inner class BaseHomeViewHolder(view: ViewDataBinding) : ViewHolder(view.root)
-
-    inner class GDSCLogoViewHolder(binding: ChildHomeLogoCardBinding) :
-        BaseHomeViewHolder(binding)
-
-    inner class ProgressViewHolder(val binding: ChildHomeProgressBinding) :
-        BaseHomeViewHolder(binding)
+    inner class GDSCLogoViewHolder(binding: ChildHomeLogoCardBinding) : BaseViewHolder(binding)
+    inner class ProgressViewHolder(binding: ChildHomeProgressBinding) : BaseViewHolder(binding)
 
 
     companion object {

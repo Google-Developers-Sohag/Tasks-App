@@ -7,10 +7,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-abstract class BaseAdapter<T> : ListAdapter<T, BaseAdapter<T>.BaseViewHolder>(BaseDiffUtils()) {
+abstract class BaseAdapter<T> : ListAdapter<T, BaseAdapter.BaseViewHolder>(BaseDiffUtils()) {
     abstract val layoutId: Int
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        return BaseViewHolder(
+        return ItemBaseViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 layoutId,
@@ -26,6 +26,7 @@ abstract class BaseAdapter<T> : ListAdapter<T, BaseAdapter<T>.BaseViewHolder>(Ba
 
     abstract fun bindData(holder: BaseViewHolder, position: Int)
 
+    abstract class BaseViewHolder(val binding: ViewDataBinding) : ViewHolder(binding.root)
 
-    inner class BaseViewHolder(val binding: ViewDataBinding) : ViewHolder(binding.root)
+    inner class ItemBaseViewHolder(binding: ViewDataBinding) : BaseViewHolder(binding)
 }

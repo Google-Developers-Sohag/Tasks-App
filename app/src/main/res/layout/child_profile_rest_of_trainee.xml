@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="java.util.List"/>
+        <variable
+            name="trainees"
+            type="List&lt;com.example.gdscsohag.domain.Trainee>" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rest_of_trainee_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:setRecyclerItems="@{trainees}" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

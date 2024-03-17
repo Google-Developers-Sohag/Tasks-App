@@ -21,10 +21,10 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:setRecyclerItems="@{viewModel.state.tasks}"
-            />
+            app:setRecyclerItems="@{viewModel.state.tasks}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

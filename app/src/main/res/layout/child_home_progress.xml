@@ -5,9 +5,11 @@
 
     <data>
 
+        <import type="java.util.List" />
+
         <variable
-            name="state"
-            type="com.example.gdscsohag.ui.home.HomeUiState" />
+            name="progressList"
+            type="List&lt;com.example.gdscsohag.domain.Progress>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,9 +33,8 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/progress_text"
-            tools:listitem="@layout/item_home_progress"
-            app:setRecyclerItems="@{state.progressList}"
-            />
+            app:setRecyclerItems="@{progressList}"
+            tools:listitem="@layout/item_home_progress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

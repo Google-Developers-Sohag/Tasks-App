@@ -9,8 +9,7 @@ import com.example.gdscsohag.databinding.ChildHomeProgressBinding
 import com.example.gdscsohag.ui.base.BaseAdapter
 import com.example.gdscsohag.ui.home.HomeUiState
 
-class HomeAdapter(private val homeState: HomeUiState) :
-    BaseAdapter<HomeUiState>() {
+class HomeAdapter(private val homeState: HomeUiState) : BaseAdapter<HomeUiState>() {
     override val layoutId = R.layout.fragment_home
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -46,7 +45,7 @@ class HomeAdapter(private val homeState: HomeUiState) :
 
     private fun onBindProgress(holder: ProgressViewHolder) {
         (holder.binding as ChildHomeProgressBinding).apply {
-            state = homeState
+            progressList = homeState.progressList
             progressRecycler.adapter = ProgressAdapter()
         }
     }

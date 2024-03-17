@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.gdscsohag.R
-import com.example.gdscsohag.databinding.ItemProfileFirstTraineeBinding
-import com.example.gdscsohag.databinding.ItemProfileRestOfTraineeBinding
+import com.example.gdscsohag.databinding.ChildProfileFirstTraineeBinding
+import com.example.gdscsohag.databinding.ChildProfileRestOfTraineeBinding
 import com.example.gdscsohag.ui.base.BaseAdapter
 import com.example.gdscsohag.ui.profile.ProfileUiState
 
@@ -19,7 +19,7 @@ class ProfileAdapter(
             FIRST_ITEM -> FirstTraineeViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_profile_first_trainee,
+                    R.layout.child_profile_first_trainee,
                     parent,
                     false
                 )
@@ -28,7 +28,7 @@ class ProfileAdapter(
             else -> RestOfTraineeViewHolder(
                 DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_profile_rest_of_trainee,
+                    R.layout.child_profile_rest_of_trainee,
                     parent,
                     false
                 )
@@ -44,7 +44,7 @@ class ProfileAdapter(
     }
 
     private fun bindFirstTrainee(holder: FirstTraineeViewHolder) {
-        (holder.binding as ItemProfileFirstTraineeBinding).apply {
+        (holder.binding as ChildProfileFirstTraineeBinding).apply {
             if (state.trainees.isNotEmpty())
                 item = state.trainees.first()
         }
@@ -52,7 +52,7 @@ class ProfileAdapter(
 
 
     private fun bindRestOfTrainee(holder: RestOfTraineeViewHolder) {
-        (holder.binding as ItemProfileRestOfTraineeBinding).apply {
+        (holder.binding as ChildProfileRestOfTraineeBinding).apply {
             if (this@ProfileAdapter.state.trainees.size >= 2) {
                 val newList = this@ProfileAdapter.state.trainees.toMutableList().apply { removeFirst() }
                 trainees = newList
@@ -63,10 +63,10 @@ class ProfileAdapter(
 
     override fun getItemCount() = ITEMS_COUNT
     override fun getItemViewType(position: Int) = position
-    inner class FirstTraineeViewHolder(binding: ItemProfileFirstTraineeBinding) :
+    inner class FirstTraineeViewHolder(binding: ChildProfileFirstTraineeBinding) :
         BaseViewHolder(binding)
 
-    inner class RestOfTraineeViewHolder(binding: ItemProfileRestOfTraineeBinding) :
+    inner class RestOfTraineeViewHolder(binding: ChildProfileRestOfTraineeBinding) :
         BaseViewHolder(binding)
 
     companion object {

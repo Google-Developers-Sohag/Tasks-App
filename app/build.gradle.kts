@@ -66,4 +66,5 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
 
     implementation(libs.glide)
+    implementation(libs.lottie)
 }

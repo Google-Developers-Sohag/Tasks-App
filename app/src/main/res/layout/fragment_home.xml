@@ -23,10 +23,53 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:padding="16dp"
+            app:controlVisibility="@{viewModel.state.contentStatus}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/child_home_logo_card"
             app:setHomeAdapter="@{viewModel.state}"
-            />
+            tools:listitem="@layout/child_home_logo_card" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:indicatorColor="@color/secondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadingVisibility="@{viewModel.state.contentStatus}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:controlErrorVisibility="@{viewModel.state.contentStatus}">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/some_thing_went_error" />
+
+            <TextView
+                style="@style/text_title_body_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:text="@string/something_went_wrong" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/secondary"
+                android:onClick="@{()->viewModel.onClickTryAgain()}"
+                android:text="@string/try_again"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

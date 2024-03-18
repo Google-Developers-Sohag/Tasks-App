@@ -4,4 +4,7 @@ import com.example.gdscsohag.ui.base.BaseViewModel
 
 class ProfileViewModel : BaseViewModel<ProfileUiState>(ProfileUiState()) {
 
+    fun onClickTryAgain() {
+
+    }
 }

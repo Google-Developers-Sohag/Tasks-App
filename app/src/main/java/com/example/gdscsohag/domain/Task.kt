@@ -1,6 +1,6 @@
 package com.example.gdscsohag.domain
 
 data class Task(
-    val points: String,
+    val points: Int,
     val content: String
 )

@@ -2,7 +2,7 @@ package com.example.gdscsohag.ui.tasks.adapter
 
 import com.example.gdscsohag.R
 import com.example.gdscsohag.databinding.ItemTaskBinding
-import com.example.gdscsohag.domain.Task
+import com.example.gdscsohag.domain.entity.Task
 import com.example.gdscsohag.ui.base.BaseAdapter
 
 class TasksAdapter : BaseAdapter<Task>() {

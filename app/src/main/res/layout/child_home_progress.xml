@@ -9,7 +9,7 @@
 
         <variable
             name="progressList"
-            type="List&lt;com.example.gdscsohag.domain.Progress>" />
+            type="com.example.gdscsohag.domain.entity.Progress" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

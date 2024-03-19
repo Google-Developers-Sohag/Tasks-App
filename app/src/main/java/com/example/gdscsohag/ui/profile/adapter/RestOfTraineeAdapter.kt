@@ -2,7 +2,7 @@ package com.example.gdscsohag.ui.profile.adapter
 
 import com.example.gdscsohag.R
 import com.example.gdscsohag.databinding.ItemRestOfTraineeBinding
-import com.example.gdscsohag.domain.Trainee
+import com.example.gdscsohag.domain.entity.Trainee
 import com.example.gdscsohag.ui.base.BaseAdapter
 
 class RestOfTraineeAdapter : BaseAdapter<Trainee>() {

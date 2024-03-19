@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.gdscsohag.domain.Task" />
+            type="com.example.gdscsohag.domain.entity.Task" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

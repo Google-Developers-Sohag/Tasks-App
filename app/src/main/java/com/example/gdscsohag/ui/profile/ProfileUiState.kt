@@ -1,6 +1,6 @@
 package com.example.gdscsohag.ui.profile
 
-import com.example.gdscsohag.domain.Trainee
+import com.example.gdscsohag.domain.entity.Trainee
 import com.example.gdscsohag.ui.base.ContentStatus
 
 data class ProfileUiState(

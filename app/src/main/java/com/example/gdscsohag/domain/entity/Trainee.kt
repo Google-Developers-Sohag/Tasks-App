@@ -1,4 +1,4 @@
-package com.example.gdscsohag.domain
+package com.example.gdscsohag.domain.entity
 
 data class Trainee(
     val imageUrl: String,

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.androidHilt)
     id("androidx.navigation.safeargs.kotlin")
     kotlin("kapt")
 }
@@ -39,6 +40,9 @@ android {
     dataBinding {
        enable = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -54,6 +58,9 @@ dependencies {
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     // splash API
     implementation(libs.androidx.core.splashscreen)

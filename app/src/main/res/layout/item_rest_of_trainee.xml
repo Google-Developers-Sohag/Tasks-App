@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.gdscsohag.domain.Trainee" />
+            type="com.example.gdscsohag.domain.entity.Trainee" />
     </data>
 
     <LinearLayout

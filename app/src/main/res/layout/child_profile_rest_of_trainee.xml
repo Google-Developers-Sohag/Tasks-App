@@ -6,7 +6,7 @@
         <import type="java.util.List"/>
         <variable
             name="trainees"
-            type="List&lt;com.example.gdscsohag.domain.Trainee>" />
+            type="List&lt;com.example.gdscsohag.domain.entity.Trainee>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

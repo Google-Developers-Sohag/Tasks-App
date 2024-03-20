@@ -4,33 +4,49 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsetsController
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.gdscsohag.MainActivity
 import com.example.gdscsohag.R
 import com.example.gdscsohag.databinding.FragmentLoginBinding
 import com.example.gdscsohag.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override val layoutId = R.layout.fragment_login
-    override val viewModel by lazy { LoginViewModel() }
+    override val viewModel: LoginViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewAppearance()
+
         viewModel.apply {
             viewModelScope.launch {
-                events.collectLatest {
-                    if (it) {
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
+                state.collectLatest {
+                    if (it.isLoading) {
+                        //Loading
+                    } else {
+                        //Dismiss loading
                     }
 
+                    if (it.error?.isNotEmpty() == true) {
+                        //Show error
+                    }
+
+                    if (it.loginResponse == true) findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2()
+                    )
                 }
+//                events.collectLatest {
+//                    if (it) {
+//                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
+//                    }
+//                }
             }
         }
     }
-
 
     private fun setupViewAppearance() {
         (activity as MainActivity).apply {
@@ -44,5 +60,4 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             controlBottomNavVisibility(false)
         }
     }
-
 }

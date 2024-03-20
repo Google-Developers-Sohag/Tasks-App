@@ -1,6 +1,6 @@
 package com.example.gdscsohag.di
 
-import com.example.gdscsohag.data.Repository
+import com.example.gdscsohag.domain.repo.Repository
 import com.example.gdscsohag.data.RepositoryImpl
 import dagger.Binds
 import dagger.Module

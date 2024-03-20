@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.gdscsohag.domain.entity.Trainee" />
+            type="com.example.gdscsohag.domain.entity.User" />
     </data>
 
     <LinearLayout
@@ -31,7 +31,7 @@
             android:layout_marginHorizontal="16dp"
             android:foreground="@drawable/trainee_shape"
             app:roundPercent="1"
-            app:setImageUrl="@{item.imageUrl}" />
+            app:setImageUrl="@{item.image}" />
 
         <TextView
             android:id="@+id/name"

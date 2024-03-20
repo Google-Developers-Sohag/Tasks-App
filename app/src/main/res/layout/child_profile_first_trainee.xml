@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.gdscsohag.domain.entity.Trainee" />
+            type="com.example.gdscsohag.domain.entity.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="@id/crown"
             app:layout_constraintTop_toTopOf="@id/crown"
             app:roundPercent="1"
-            app:setImageUrl="@{item.imageUrl}"
+            app:setImageUrl="@{item.image}"
             tools:srcCompat="@drawable/gdsc__sohag_logo" />
 
         <TextView

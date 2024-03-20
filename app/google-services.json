@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669996019903",
+    "project_id": "gdsc-sohag",
+    "storage_bucket": "gdsc-sohag.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669996019903:android:00d88e9002e06e4c72560a",
+        "android_client_info": {
+          "package_name": "com.example.gdscsohag"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU-sFprOehXjFnzG2TuYkxRWhORELVdH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,11 @@
 package com.example.gdscsohag.ui.login
 
-import com.example.gdscsohag.domain.entity.NetworkResponse
+import com.example.gdscsohag.ui.base.ContentStatus
 
 data class LoginUiState(
-    val error: String? = null,
-    val isLoading: Boolean = false,
-    val loginResponse: Boolean? = null
+    val contentStatus: ContentStatus = ContentStatus.VISIBLE,
+    val email: String = "",
+    val password: String = "",
+    val emailErrorMessage: String? = null,
+    val passwordErrorMessage: String? = null,
 )

@@ -6,6 +6,7 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.gdscsohag.R
 import com.example.gdscsohag.ui.base.BaseAdapter
 import com.example.gdscsohag.ui.base.ContentStatus
 import com.example.gdscsohag.ui.base.ContentStatus.ERROR
@@ -15,6 +16,7 @@ import com.example.gdscsohag.ui.home.HomeUiState
 import com.example.gdscsohag.ui.home.adapter.HomeAdapter
 import com.example.gdscsohag.ui.profile.ProfileUiState
 import com.example.gdscsohag.ui.profile.adapter.ProfileAdapter
+import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter(value = ["app:setImageUrl"])
 fun ImageView.setImageUrl(url: String?) {
@@ -60,5 +62,12 @@ fun View.controlErrorVisibility(state: ContentStatus) {
         else -> View.GONE
     }
 }
+
+
+@BindingAdapter(value = ["app:checkFiled"])
+fun TextInputLayout.checkFiled(state: String?) {
+    helperText = if (state != null) context.getString(R.string.required) else null
+}
+
 
 

@@ -22,28 +22,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewAppearance()
-
         viewModel.apply {
             viewModelScope.launch {
-                state.collectLatest {
-                    if (it.isLoading) {
-                        //Loading
-                    } else {
-                        //Dismiss loading
+                events.collectLatest {
+                    if (it) {
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
                     }
-
-                    if (it.error?.isNotEmpty() == true) {
-                        //Show error
-                    }
-
-                    if (it.loginResponse == true) findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2()
-                    )
                 }
-//                events.collectLatest {
-//                    if (it) {
-//                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
-//                    }
-//                }
             }
         }
     }

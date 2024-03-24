@@ -7,7 +7,7 @@ import com.example.gdscsohag.domain.entity.User
 
 interface Repository {
     suspend fun login(email: String, pass: String): NetworkResponse<Boolean>
-    suspend fun getAllProgress(): List<Progress>
+    suspend fun getAllProgress(): NetworkResponse<List<Progress>>
     suspend fun getSessions(): NetworkResponse<List<Session>>
-    suspend fun getTraineeByPoints():NetworkResponse<List<User>>
+    suspend fun getTraineeByPoints(): NetworkResponse<List<User>>
 }

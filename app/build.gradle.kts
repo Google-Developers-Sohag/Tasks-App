@@ -80,6 +80,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore)
-    implementation("com.google.firebase:firebase-crashlytics")
-    implementation("com.google.firebase:firebase-auth")
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.auth)
 }

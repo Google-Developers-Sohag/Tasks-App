@@ -28,28 +28,39 @@ class RepositoryImpl @Inject constructor(
         return response
     }
 
-    override suspend fun getAllProgress(): List<Progress> {
-        return listOf()
+    override suspend fun getAllProgress(): NetworkResponse<List<Progress>> {
+        val progress = db.collection("info").document("progress").get().await()
+        val data = progress.data?.map {
+            Progress(
+                title = it.key.toString(),
+                progressCount = it.value.toString().toInt()
+            )
+        }
+        return if (data?.isNotEmpty() == true) NetworkResponse.Success(data) else NetworkResponse.Error(
+            "Something wrong"
+        )
     }
 
     override suspend fun getSessions(): NetworkResponse<List<Session>> {
-        var response: NetworkResponse<List<Session>> = NetworkResponse.Error("")
-        db.collection("sessions").get().addOnSuccessListener {
-            val list = ArrayList<Session>()
-            it.documents.forEach {
-                val session = Session(
-                    startDate = it.get("start_date").toString(),
-                    endDate = it.get("end_date").toString(),
-                    sessionVideo = it.get("session").toString(),
-                    tasks = it.get("tasks") as List<String>
+        val data = db.collection("sessions").get().await()
+        val sessions = data.documents.map {
+            val t = db.collection("sessions").document(it.id).collection("tasks").get().await()
+            val tasks = t.documents.map {
+                Session.Task(
+                    content = it.get("content").toString(),
+                    points = it.get("points").toString().toInt()
                 )
-                list.add(session)
             }
-            response = NetworkResponse.Success(list)
-        }.addOnFailureListener {
-            response = NetworkResponse.Error(it.message.toString())
-        }.await()
-        return response
+            Session(
+                startDate = it.get("start_date").toString(),
+                endDate = it.get("end_date").toString(),
+                sessionVideo = it.get("session").toString(),
+                tasks = tasks
+            )
+        }
+
+        return if (sessions.isNotEmpty()) NetworkResponse.Success(sessions) else
+            NetworkResponse.Error("Something wrong")
     }
 
     override suspend fun getTraineeByPoints(): NetworkResponse<List<User>> {

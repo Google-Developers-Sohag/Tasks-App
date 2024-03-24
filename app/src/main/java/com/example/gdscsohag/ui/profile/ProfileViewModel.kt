@@ -30,7 +30,7 @@ class ProfileViewModel @Inject constructor(
     private fun onTraineeSuccess(success: List<User>) {
         _state.update {
             it.copy(
-                contentStatus = ContentStatus.LOADING,
+                contentStatus = ContentStatus.VISIBLE,
                 trainees = success
             )
         }

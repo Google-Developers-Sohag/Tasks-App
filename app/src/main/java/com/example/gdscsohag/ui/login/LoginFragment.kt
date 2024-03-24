@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsetsController
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -22,15 +23,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewAppearance()
-        viewModel.apply {
-            viewModelScope.launch {
-                events.collectLatest {
-                    if (it) {
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
-                    }
-                }
-            }
-        }
+        loginObserve()
     }
 
     private fun setupViewAppearance() {
@@ -44,5 +37,25 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
             }
             controlBottomNavVisibility(false)
         }
+    }
+
+    private fun loginObserve() {
+        viewModel.apply {
+            viewModelScope.launch {
+                events.collectLatest {
+                    if (it) {
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment2())
+                    } else showInvalidLoginToast()
+                }
+            }
+        }
+    }
+
+    private fun showInvalidLoginToast() {
+        Toast.makeText(
+            context,
+            getString(R.string.wrong_email_or_password_check_and_try_again),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

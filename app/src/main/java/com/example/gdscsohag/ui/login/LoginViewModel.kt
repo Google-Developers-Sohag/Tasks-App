@@ -31,8 +31,10 @@ class LoginViewModel @Inject constructor(
         if (validateFields()) {
             _state.update { it.copy(contentStatus = ContentStatus.LOADING) }
             viewModelScope.launch(Dispatchers.IO) {
-                val data = loginUseCase(state.value.email, state.value.password).data
-                _events.emit(data != null && data)
+                loginUseCase(
+                    state.value.email,
+                    state.value.password
+                ).data?.let { _events.emit(it) }
             }
         }
     }

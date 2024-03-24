@@ -4,7 +4,6 @@ import android.util.Log
 import com.example.gdscsohag.domain.entity.NetworkResponse
 import com.example.gdscsohag.domain.entity.Progress
 import com.example.gdscsohag.domain.entity.Session
-import com.example.gdscsohag.domain.entity.Task
 import com.example.gdscsohag.domain.entity.User
 import com.example.gdscsohag.domain.repo.Repository
 import com.google.firebase.auth.FirebaseAuth
@@ -51,14 +50,6 @@ class RepositoryImpl @Inject constructor(
             response = NetworkResponse.Error(it.message.toString())
         }.await()
         return response
-    }
-
-    override suspend fun getAllTasks(): List<Task> {
-        return listOf()
-    }
-
-    override suspend fun getAllTrainee(): List<User> {
-        return listOf()
     }
 
     override suspend fun getTraineeByPoints(): NetworkResponse<List<User>> {

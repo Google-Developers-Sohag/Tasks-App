@@ -4,9 +4,9 @@
 
     <data>
         <import type="java.util.List"/>
-<!--        <variable-->
-<!--            name="trainees"-->
-<!--            type="List&lt;com.example.gdscsohag.domain.entUserinee>" />-->
+        <variable
+            name="trainees"
+            type="List&lt;com.example.gdscsohag.domain.entity.User>" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -23,6 +23,7 @@
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
+            app:setRecyclerItems="@{trainees}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </com.google.android.material.card.MaterialCardView>

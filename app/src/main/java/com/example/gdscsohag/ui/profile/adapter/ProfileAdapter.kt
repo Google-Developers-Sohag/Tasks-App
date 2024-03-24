@@ -55,7 +55,7 @@ class ProfileAdapter(
         (holder.binding as ChildProfileRestOfTraineeBinding).apply {
             if (this@ProfileAdapter.state.trainees.size >= 2) {
                 val newList = this@ProfileAdapter.state.trainees.toMutableList().apply { removeFirst() }
-              //  trainees = newList
+                trainees = newList
             }
             restOfTraineeRecycler.adapter = RestOfTraineeAdapter()
         }

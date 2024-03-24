@@ -16,10 +16,5 @@ class TasksFragment : BaseFragment<FragmentTasksBinding, TasksViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getSessions()
-        setupTasksRecycler()
-    }
-
-    private fun setupTasksRecycler() {
-        binding.tasksRecycler.adapter = TasksAdapter()
     }
 }

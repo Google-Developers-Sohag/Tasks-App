@@ -24,7 +24,8 @@
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:setRecyclerItems="@{viewModel.state.sessions}" />
+            app:setTasksAdapter="@{viewModel.state}"
+            app:controlVisibility="@{viewModel.state.contentStatus}" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:layout_width="wrap_content"

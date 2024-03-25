@@ -1,6 +1,7 @@
 package com.example.gdscsohag.ui.login
 
 import androidx.lifecycle.viewModelScope
+import com.example.gdscsohag.data.SharedPrefManager
 import com.example.gdscsohag.domain.usecase.LoginUseCase
 import com.example.gdscsohag.ui.base.BaseViewModel
 import com.example.gdscsohag.ui.base.ContentStatus
@@ -31,12 +32,24 @@ class LoginViewModel @Inject constructor(
         if (validateFields()) {
             _state.update { it.copy(contentStatus = ContentStatus.LOADING) }
             viewModelScope.launch(Dispatchers.IO) {
-                loginUseCase(
-                    state.value.email,
-                    state.value.password
-                ).data?.let { _events.emit(it) }
+                val isSuccess = loginUseCase(state.value.email, state.value.password).data
+                if (isSuccess != null)
+                    onLoginSuccess()
+                else
+                    onLoginError()
             }
         }
+    }
+
+    private fun onLoginSuccess() {
+        SharedPrefManager.isLogin = true
+        viewModelScope.launch { _events.emit(true) }
+    }
+
+
+    private fun onLoginError() {
+        _state.update { it.copy(contentStatus = ContentStatus.VISIBLE) }
+        viewModelScope.launch { _events.emit(false) }
     }
 
     private fun validateFields(): Boolean {

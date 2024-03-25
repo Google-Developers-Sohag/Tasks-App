@@ -7,6 +7,7 @@ import com.example.gdscsohag.domain.entity.Session
 import com.example.gdscsohag.domain.entity.User
 import com.example.gdscsohag.domain.repo.Repository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
@@ -20,11 +21,15 @@ class RepositoryImpl @Inject constructor(
 ) : Repository {
     override suspend fun login(email: String, pass: String): NetworkResponse<Boolean> {
         var response: NetworkResponse<Boolean> = NetworkResponse.Error("")
-        auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener {
-            response = NetworkResponse.Success(true)
-        }.addOnFailureListener {
-            response = NetworkResponse.Error(message = it.message.toString())
-        }.await()
+        try {
+            auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener {
+                response = NetworkResponse.Success(true)
+            }.addOnFailureListener {
+                response = NetworkResponse.Error(message = it.message.toString())
+            }.await()
+        } catch (e: Exception) {
+            response = NetworkResponse.Error(message = e.message.toString())
+        }
         return response
     }
 

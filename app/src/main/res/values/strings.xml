@@ -15,4 +15,6 @@
     <string name="required">required</string>
     <string name="wrong_email_or_password_check_and_try_again">wrong email or password check and try again</string>
     <string name="next_deadline">Next Deadline</string>
+    <string name="day_hour_minutes">Day   Hour   Minutes</string>
+    <string name="session_link">Session link: </string>
 </resources>

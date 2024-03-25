@@ -22,10 +22,9 @@
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:setProfileAdapter="@{viewModel.state}"
             app:controlVisibility="@{viewModel.state.contentStatus}"
-            />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:setProfileAdapter="@{viewModel.state}" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:layout_width="wrap_content"
@@ -63,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/secondary"
-                android:onClick="@{()->viewModel.onClickTryAgain()}"
+                android:onClick="@{()->viewModel.getTrainee()}"
                 android:text="@string/try_again"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />

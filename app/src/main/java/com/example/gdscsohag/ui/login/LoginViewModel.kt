@@ -1,6 +1,7 @@
 package com.example.gdscsohag.ui.login
 
 import androidx.lifecycle.viewModelScope
+import com.example.gdscsohag.data.SharedPrefManager
 import com.example.gdscsohag.domain.usecase.LoginUseCase
 import com.example.gdscsohag.ui.base.BaseViewModel
 import com.example.gdscsohag.ui.base.ContentStatus
@@ -41,6 +42,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun onLoginSuccess() {
+        SharedPrefManager.isLogin = true
         viewModelScope.launch { _events.emit(true) }
     }
 

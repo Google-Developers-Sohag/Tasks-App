@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.gdscsohag.data.SharedPrefManager
 import com.example.gdscsohag.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var navHost: NavHostFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
         setupSplashScreen()
         setupBottomNav()
+        checkIsLogin()
     }
 
     private fun setupSplashScreen() {
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        val navHost =
+        navHost =
             supportFragmentManager.findFragmentById(binding.mainFragment.id) as NavHostFragment
         navController = navHost.navController
         binding.bottomNav.setupWithNavController(navController)
@@ -50,6 +53,15 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.visibility = when (isShow) {
             true -> View.VISIBLE
             false -> View.GONE
+        }
+    }
+
+    private fun checkIsLogin() {
+        SharedPrefManager.getInit(applicationContext)
+        if (SharedPrefManager.isLogin) {
+            val graph = navController.navInflater.inflate(R.navigation.main_navigation)
+            graph.setStartDestination(R.id.homeFragment2)
+            navController.setGraph(graph, intent.extras)
         }
     }
 }

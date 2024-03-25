@@ -1,6 +1,8 @@
 package com.example.gdscsohag.ui.tasks.adapter
 
+import android.os.CountDownTimer
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.gdscsohag.R
@@ -9,6 +11,7 @@ import com.example.gdscsohag.databinding.ChildTasksTasksItemsBinding
 import com.example.gdscsohag.domain.entity.Session
 import com.example.gdscsohag.ui.base.BaseAdapter
 import com.example.gdscsohag.ui.tasks.TasksUiState
+import java.util.Date
 
 class TasksAdapter(
     val state: TasksUiState
@@ -46,10 +49,34 @@ class TasksAdapter(
 
     private fun bindSessionInfo(holder: SessionInfoViewHolder) {
         (holder.binding as ChildTasksSessionInfoBinding).apply {
-            if (state.sessions.isNotEmpty())
-                item = state.sessions.first()
+            val session = state.sessions.first()
+            item = session
+            val currentDate = Date()
+            val endDate = Date(session.endDate.refactorDateInSeconds() * 1000)
+            val seconds = endDate.time - currentDate.time
+            val counter = object : CountDownTimer(seconds, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    deadLine.text = refactorDeadLine(millisUntilFinished / 1000)
+                }
+
+                override fun onFinish() {
+                    deadLine.text = "Best Wishes"
+                    counterHint.visibility = View.GONE
+                }
+            }
+            counter.start()
         }
     }
+
+    private fun refactorDeadLine(seconds: Long): String {
+        val days = seconds / (24 * 3600)
+        val hours = (seconds % (24 * 3600)) / 3600
+        val minutes = (seconds % 3600) / 60
+        return "$days : $hours : $minutes"
+    }
+
+    private fun String.refactorDateInSeconds() =
+        this.substringAfter('=').substringBefore(',').toLong()
 
     private fun bindTasksItems(holder: TasksItemsViewHolder) {
         (holder.binding as ChildTasksTasksItemsBinding).apply {

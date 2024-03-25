@@ -31,12 +31,23 @@ class LoginViewModel @Inject constructor(
         if (validateFields()) {
             _state.update { it.copy(contentStatus = ContentStatus.LOADING) }
             viewModelScope.launch(Dispatchers.IO) {
-                loginUseCase(
-                    state.value.email,
-                    state.value.password
-                ).data?.let { _events.emit(it) }
+                val isSuccess = loginUseCase(state.value.email, state.value.password).data
+                if (isSuccess != null)
+                    onLoginSuccess()
+                else
+                    onLoginError()
             }
         }
+    }
+
+    private fun onLoginSuccess() {
+        viewModelScope.launch { _events.emit(true) }
+    }
+
+
+    private fun onLoginError() {
+        _state.update { it.copy(contentStatus = ContentStatus.VISIBLE) }
+        viewModelScope.launch { _events.emit(false) }
     }
 
     private fun validateFields(): Boolean {

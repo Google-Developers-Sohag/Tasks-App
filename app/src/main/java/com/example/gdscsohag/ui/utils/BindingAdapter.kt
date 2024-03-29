@@ -22,8 +22,9 @@ import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter(value = ["app:setImageUrl"])
 fun ImageView.setImageUrl(url: String?) {
-    url?.let { Glide.with(this).load(it).into(this) }
-
+    if (url.isNullOrBlank()) {
+        setImageResource(R.drawable.ic_student)
+    } else Glide.with(this).load(url).placeholder(R.drawable.image_place_holder).into(this)
 }
 
 @BindingAdapter(value = ["app:setRecyclerItems"])

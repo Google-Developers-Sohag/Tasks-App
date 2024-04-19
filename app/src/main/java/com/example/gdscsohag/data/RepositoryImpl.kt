@@ -72,12 +72,12 @@ class RepositoryImpl @Inject constructor(
         var response: NetworkResponse<List<User>> = NetworkResponse.Error("")
         db.collection("users").orderBy("points", Query.Direction.ASCENDING).get()
             .addOnSuccessListener {
-                val list = ArrayList<User>()
+                val list = mutableListOf<User>()
                 it.forEach {
                     val user = User(
                         name = it.get("name").toString(),
                         email = it.get("email").toString(),
-                        points = it.get("points").toString(),
+                        points = it.get("points").toString().toInt(),
                         image = it.get("image").toString(),
                         section = it.get("section").toString(),
                         status = it.get("status").toString(),
@@ -85,7 +85,7 @@ class RepositoryImpl @Inject constructor(
                     )
                     list.add(user)
                 }
-                Log.i(TAG, list.toString())
+                list.sortByDescending { it.points }
                 response = NetworkResponse.Success(list)
             }.addOnFailureListener {
                 response = NetworkResponse.Error(it.message.toString())
